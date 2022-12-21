@@ -13,6 +13,7 @@ import * as z from 'zod'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import InputMask from 'react-input-mask'
+import { useOrderContext } from '../../contexts/OrdersContext'
 
 const newOrderFormSchema = z.object({
   name: z.string().nonempty('Field required'),
@@ -56,6 +57,8 @@ export function NewOrderModal() {
     resolver: zodResolver(newOrderFormSchema),
   })
 
+  const { createOrder } = useOrderContext()
+
   async function handleCreateNewOrder(data) {
     console.log('created order', data)
     const {
@@ -67,17 +70,17 @@ export function NewOrderModal() {
       category,
       deadline,
     } = data
-    // await createOrder({
-    //   name,
-    //   description,
-    //   estateAgency,
-    //   company,
-    //   phone,
-    //   category,
-    //   deadline,
-    // })
+    await createOrder({
+      name,
+      description,
+      estateAgency,
+      company,
+      phone,
+      category,
+      deadline,
+    })
 
-    // reset()
+    reset()
   }
 
   return (
@@ -193,7 +196,7 @@ export function NewOrderModal() {
             errors.estateAgency ||
             errors.phone ||
             errors.company ||
-            errors.deadline) && <p>Please complete fields</p>}
+            errors.deadline) && <p>Please complete fields correctly</p>}
           <button type="submit">Save</button>
         </FormNewOrder>
       </Content>

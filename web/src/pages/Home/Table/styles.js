@@ -5,6 +5,7 @@ export const OrderTable = styled.table`
   border-collapse: separate;
   border-spacing: 0 0.5rem;
   margin-top: 1.5rem;
+  color: ${(props) => props.theme['gray-300']};
   td {
     padding: 1.25rem 2rem;
     text-align: center;
@@ -14,6 +15,9 @@ export const OrderTable = styled.table`
     }
     &:last-child {
       border-radius: 0 12px 12px 0;
+    }
+    &:hover {
+      cursor: pointer;
     }
   }
 
@@ -28,9 +32,6 @@ export const OrderTable = styled.table`
     &:last-child {
       border-radius: 0 12px 12px 0;
     }
+    color: ${(props) => props.theme['gray-100']};
   }
-`
-
-export const Order = styled.a`
-  width: 100%;
 `

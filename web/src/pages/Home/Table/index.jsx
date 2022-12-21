@@ -1,7 +1,10 @@
-import { OrderTable, Order } from './styles'
+import { useOrderContext } from '../../../contexts/OrdersContext'
+import { OrderTable } from './styles'
+import { useNavigate } from 'react-router-dom'
 
 export function Table() {
-  const id = 1
+  const { orders, goToPageORderDetail } = useOrderContext()
+
   return (
     <OrderTable>
       <thead>
@@ -15,51 +18,18 @@ export function Table() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>101</td>
-          <td>Hidraulica</td>
-          <td>Alcides (11) 99999-9999</td>
-          <td>Imobiliaria Sampa</td>
-          <td>Reparos S.A.</td>
-          <td>
-            <Order href={`id=${id}`}>10/11/2021</Order>
-          </td>
-        </tr>
-        <tr>
-          <td>101</td>
-          <td>Hidraulica</td>
-          <td>Alcides (11) 99999-9999</td>
-          <td>Imobiliaria Sampa</td>
-          <td>Reparos S.A.</td>
-          <td>10/11/2021</td>
-        </tr>
-
-        <tr>
-          <td>101</td>
-          <td>Hidraulica</td>
-          <td>Alcides (11) 99999-9999</td>
-          <td>Imobiliaria Sampa</td>
-          <td>Reparos S.A.</td>
-          <td>10/11/2021</td>
-        </tr>
-
-        <tr>
-          <td>101</td>
-          <td>Hidraulica</td>
-          <td>Alcides (11) 99999-9999</td>
-          <td>Imobiliaria Sampa</td>
-          <td>Reparos S.A.</td>
-          <td>10/11/2021</td>
-        </tr>
-
-        <tr>
-          <td>101</td>
-          <td>Hidraulica</td>
-          <td>Alcides (11) 99999-9999</td>
-          <td>Imobiliaria Sampa</td>
-          <td>Reparos S.A.</td>
-          <td>10/11/2021</td>
-        </tr>
+        {orders.map((order) => {
+          return (
+            <tr key={order.id} onClick={() => goToPageORderDetail(order.id)}>
+              <td>{order?.id}</td>
+              <td>{order?.category}</td>
+              <td>{`${order?.name} - ${order?.phone}`}</td>
+              <td>{order?.estateAgency}</td>
+              <td>{order?.company}</td>
+              <td>{order?.deadline}</td>
+            </tr>
+          )
+        })}
       </tbody>
     </OrderTable>
   )

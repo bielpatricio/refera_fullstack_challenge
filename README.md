@@ -14,7 +14,9 @@ This project was proposed by the refer group as a challenge. The goal of this ch
   2. For the next step it is necessary to have docker running and preferably open;
   3. Now access the terminal inside the project folder;
   4. Enter the server folder (`cd server`) and type the following command: `docker compose up --build`;
-  5. Now that the backend is running, go back to the project's root folder (`cd ..`), go to the web folder (`cd web`) and type the following command: `npm run dev`;
+  5. Now that the backend is running, go back to the project's root folder (`cd ..`), go to the web folder (`cd web`);
+  6. Type the following command to install all dependencies: `npm install`;
+  7. Now type the following command: `npm run dev`;
   
   Now front and back is running on your machine.
   To access the application, just go to a browser and access the page: http://localhost:3000/
@@ -27,7 +29,7 @@ This project was proposed by the refer group as a challenge. The goal of this ch
   To show more knowledge of reactJS, a route system was created on the front-end, where when you click on one of the orders on the home page, you are redirected to a page where you will have detailed information about the selected order. In addition to the information, the page also has a button in the upper right corner (inside the field) that allows you to delete the order. To return to the initial page, one of the options is to click on the reference icon in the upper left corner, it will always redirect to the application's initial page.
   
 ## Server
-  The back-end was created in django, a system used by the company Refera. The backend was created to support the challenge requirements:
+  The back-end was created in django, a system used by the company Refera. The server runs on port 8000. The backend was created to support the challenge requirements:
   
   1. RESTful API allowing CRUD and list operations on the orders
      - Endpoint to create/retrieve/update/delete order
@@ -86,20 +88,6 @@ This project was proposed by the refer group as a challenge. The goal of this ch
         
         ```
         
-Here are some prints of Postman and Dbeaver:
-
-![image](https://user-images.githubusercontent.com/32223762/209236553-0a0924bf-db93-4dd6-a42c-e2db149a65f8.png)
-
-![image](https://user-images.githubusercontent.com/32223762/209234082-ba1e11b3-0ac0-44d1-8726-2c14d9269426.png)
-
-![image](https://user-images.githubusercontent.com/32223762/209234345-61719fd4-a7a4-4caf-8893-4eb314284510.png)
-
-![image](https://user-images.githubusercontent.com/32223762/209234668-293ac1d4-4c51-45e7-a37d-9cea46f986c4.png)
-
-![image](https://user-images.githubusercontent.com/32223762/209234729-0f3540ba-81a8-499a-afd0-30f1aa5e4f0f.png)
-
-![image](https://user-images.githubusercontent.com/32223762/209234896-5a323c28-b71d-4de5-bac1-78ae892fa1df.png)
-
 
 ### Category
    For the category, also 5 routes were created:
@@ -134,25 +122,62 @@ Here are some prints of Postman and Dbeaver:
         
         ```    
 
-![image](https://user-images.githubusercontent.com/32223762/209234781-3719b338-e812-4a68-ad84-19b08983b854.png)
-
-
-
-
 
 ## WEB
-  The front-end stop was made in reactJS and styled-components, as mentioned before there are two routes to '/' to the home page where the orders are listed and the create order is done, and the route '/:orderId', where orderId represents the Id of the selected order, this page will show the details of the order. The layout was created based on the challenge specification diagram. The material-ui library was used for the icons. Below are some screenshots of the running application.
+  The front-end stop was made in reactJS and styled-components, as mentioned before there are two routes to '/' to the home page where the orders are listed and the create order is done, and the route '/:orderId', where orderId represents the Id of the selected order, this page will show the details of the order. The layout was created based on the challenge specification diagram. The material-ui library was used for the icons. All requests are made in the OrdersContext file, in this context the request information is saved and made available to all other files and pages. The web page run on port 3000.
   
- ![image](https://user-images.githubusercontent.com/32223762/209229915-46474269-3ec8-42ac-a2bf-f0e09c737671.png)
+### Below are some screenshots of the running application.
+  
+ <!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
+  <img src="https://user-images.githubusercontent.com/32223762/209229915-46474269-3ec8-42ac-a2bf-f0e09c737671.png" width="700" title="Postman">
   [Initial page, each line of the table leads to the Details page of the order that is in the line]
-  
-![image](https://user-images.githubusercontent.com/32223762/209229361-d2e3d66c-0141-4c5c-ba44-5c3bce83e6c4.png)
+  <br>
+  <br>
+<!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
+  <img src="https://user-images.githubusercontent.com/32223762/209229361-d2e3d66c-0141-4c5c-ba44-5c3bce83e6c4.png" width="700" title="Postman">
  [Modal to create orders]
-
-![image](https://user-images.githubusercontent.com/32223762/209229744-43f13e6f-61ef-4bfa-904b-b1b00775d81e.png)
+<br>
+  <br>
+<!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
+  <img src="https://user-images.githubusercontent.com/32223762/209229744-43f13e6f-61ef-4bfa-904b-b1b00775d81e.png" width="700" title="Postman">
 [Detail page of the selected order]
 
+<br>
+  <br>
 
+### Here are some prints of Postman and Dbeaver:
+
+<!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
+  <img src="https://user-images.githubusercontent.com/32223762/209236553-0a0924bf-db93-4dd6-a42c-e2db149a65f8.png" width="600" title="Dbeaver">
+
+
+<!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
+  <img src="https://user-images.githubusercontent.com/32223762/209234082-ba1e11b3-0ac0-44d1-8726-2c14d9269426.png" width="800" title="Dbeaver">
+  
+  
+<!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
+  <img src="https://user-images.githubusercontent.com/32223762/209234082-ba1e11b3-0ac0-44d1-8726-2c14d9269426.png" width="700" title="Dbeaver">
+  
+  
+<!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
+  <img src="https://user-images.githubusercontent.com/32223762/209234345-61719fd4-a7a4-4caf-8893-4eb314284510.png" width="700" title="Postman">
+  
+  
+<!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
+  <img src="https://user-images.githubusercontent.com/32223762/209234668-293ac1d4-4c51-45e7-a37d-9cea46f986c4.png" width="700" title="Postman">
+  
+  
+<!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
+  <img src="https://user-images.githubusercontent.com/32223762/209234729-0f3540ba-81a8-499a-afd0-30f1aa5e4f0f.png" width="700" title="Postman">
+  
+  
+<!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
+  <img src="https://user-images.githubusercontent.com/32223762/209234896-5a323c28-b71d-4de5-bac1-78ae892fa1df.png" width="700" title="Postman">
+  
+<!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
+  <img src="https://user-images.githubusercontent.com/32223762/209234781-3719b338-e812-4a68-ad84-19b08983b854.png" width="700" title="Postman">
+<br>
+  <br>
 
 ### Some references:
 

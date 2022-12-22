@@ -18,15 +18,19 @@ export function Table() {
         </tr>
       </thead>
       <tbody>
-        {orders.map((order) => {
+        {orders?.map((order) => {
           return (
             <tr key={order.id} onClick={() => goToPageORderDetail(order.id)}>
               <td>{order?.id}</td>
-              <td>{order?.category}</td>
+              <td>{order?.category.category}</td>
               <td>{`${order?.name} - ${order?.phone}`}</td>
               <td>{order?.estateAgency}</td>
               <td>{order?.company}</td>
-              <td>{order?.deadline}</td>
+              <td>
+                {new Date(order?.deadline).getDate()}/
+                {new Date(order?.deadline).getMonth() + 1}/
+                {new Date(order?.deadline).getFullYear()}
+              </td>
             </tr>
           )
         })}

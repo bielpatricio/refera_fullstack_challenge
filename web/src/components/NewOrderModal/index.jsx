@@ -26,25 +26,6 @@ const newOrderFormSchema = z.object({
   // .datetime({ message: 'Invalid datetime string! Must be UTC.' }),
 })
 
-const orderCategory = [
-  {
-    value: 'hidraulica',
-    name: 'Hidráulica',
-  },
-  {
-    value: 'infiltracao',
-    name: 'Infiltração',
-  },
-  {
-    value: 'eletrica',
-    name: 'Elétrica',
-  },
-  {
-    value: 'mobilia',
-    name: 'Retirada de mobília',
-  },
-]
-
 export function NewOrderModal() {
   const {
     control,
@@ -57,7 +38,8 @@ export function NewOrderModal() {
     resolver: zodResolver(newOrderFormSchema),
   })
 
-  const { createOrder } = useOrderContext()
+  const { createOrder, categories } = useOrderContext()
+  console.log('categories: ', categories)
 
   async function handleCreateNewOrder(data) {
     console.log('created order', data)
@@ -177,10 +159,10 @@ export function NewOrderModal() {
                 <option disabled value="">
                   Select the order Category
                 </option>
-                {orderCategory.map((category) => {
+                {categories?.map((category) => {
                   return (
-                    <option key={category.value} value={category.value}>
-                      {category.name}
+                    <option key={category.id} value={category.id}>
+                      {category.category}
                     </option>
                   )
                 })}

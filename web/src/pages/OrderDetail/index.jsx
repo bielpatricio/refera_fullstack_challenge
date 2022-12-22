@@ -8,11 +8,13 @@ import {
   Title,
   Line,
   ContainerDescription,
+  DeleteButton,
 } from './styles'
 import { useParams } from 'react-router-dom'
+import { Trash } from 'phosphor-react'
 
 export function OrderDetail() {
-  const { orderSelected, getOrderDetail } = useOrderContext()
+  const { orderSelected, getOrderDetail, deleteOrder } = useOrderContext()
   const params = useParams()
   const { orderId } = params
 
@@ -27,7 +29,7 @@ export function OrderDetail() {
       </Title>
       <CardContainer>
         <Line>
-          <Container width="50%">
+          <Container width="75%">
             <Field>
               <h3>Contact Name: </h3>
               <h2>{orderSelected?.name}</h2>
@@ -37,27 +39,33 @@ export function OrderDetail() {
               <h2>{orderSelected?.phone}</h2>
             </Field>
           </Container>
+          <DeleteButton onClick={() => deleteOrder(orderId)}>
+            <Trash size={32} color="#7e22ce" weight="fill" />
+          </DeleteButton>
+        </Line>
+        <Line>
           <Container width="50%">
             <Field>
               <h3>Company: </h3>
-              <h2>{orderSelected?.estateAgency}</h2>
+              <h2>{orderSelected?.company}</h2>
             </Field>
             <Field>
               <h3>Category: </h3>
               <h2>{orderSelected?.category}</h2>
             </Field>
           </Container>
+
+          <Container width="50%">
+            <Field>
+              <h3>Real Estate Agency: </h3>
+              <h2>{orderSelected?.estateAgency}</h2>
+            </Field>
+            <Field>
+              <h3>Deadline: </h3>
+              <h2>{orderSelected?.deadline}</h2>
+            </Field>
+          </Container>
         </Line>
-        <Container width="100%">
-          <Field>
-            <h3>Real Estate Agency: </h3>
-            <h2>{orderSelected?.name}</h2>
-          </Field>
-          <Field>
-            <h3>Deadline: </h3>
-            <h2>{orderSelected?.deadline}</h2>
-          </Field>
-        </Container>
         <ContainerDescription>
           <h3>Order Description: </h3>
           <h2>{orderSelected?.description}</h2>

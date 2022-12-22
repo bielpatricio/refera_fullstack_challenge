@@ -10,10 +10,12 @@ export const defaultTheme = {
   'gray-800': '#202024',
   'gray-900': '#121214',
 
+  'blue-100': '#dbeafe',
   'blue-300': '#93c5fd',
   'blue-500': '#3b82f6',
   'blue-700': '#1d4ed8',
 
+  'purple-100': '#f3e8ff',
   'purple-300': '#d8b4fe',
   'purple-500': '#a855f7',
   'purple-700': '#7e22ce',

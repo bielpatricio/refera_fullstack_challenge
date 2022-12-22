@@ -60,30 +60,63 @@ const Mock = [
 
 export function OrdersProvider({ children }) {
   const [orders, setOrders] = useState([])
+  const [categories, setCategories] = useState([])
   const [orderSelected, setOrderSelected] = useState()
+  const [total, setTotal] = useState(0)
   const navigate = useNavigate()
-  const params = useParams()
-  const { orderId } = params
+  // const params = useParams()
+  // const { orderId } = params
 
-  const fetchOrder = useCallback(async (query) => {
-    // const response = await api.get('/orders', {
-    //   params: {
-    //     _sort: 'createdAt',
-    //     _order: 'desc',
-    //     q: query,
-    //   },
-    // })
+  const [nextPagination, setNextPagination] = useState()
+  const [previousPagination, setPreviousPagination] = useState()
 
-    // setOrders(response.data)
-    setOrders(Mock)
+  const fetchOrder = useCallback(async (page) => {
+    try {
+      const response = await api.get('/orders', {})
+      console.log('fetchOrder', response.data)
+      setNextPagination(response.data.next)
+      setPreviousPagination(response.data.previous)
+      setOrders(response.data.results)
+      setTotal(response.data.count)
+    } catch (error) {
+      console.error(error)
+    }
   }, [])
 
   const getOrderDetail = useCallback(async (id) => {
-    // const response = await api.get(`/orders/${id}`, {})
+    const response = await api.get(`/orders/${id}`, {})
+    // console.log('getOrderDetail', response.data)
+    setOrderSelected(response.data.data)
+  }, [])
 
-    // setOrders(response.data)
+  const deleteOrder = useCallback(async (id) => {
+    try {
+      const response = await api.delete(`/orders/${id}`, {})
+      // setOrders((state) => {
+      //   return state.filter((order) => order.id !== parseInt(id))
+      // })
+      alert(response.data.message)
+      navigate('/')
+    } catch (e) {
+      console.log(e)
+    }
+  }, [])
 
-    setOrderSelected(Mock.find((m) => m.id === id))
+  const changePageOfOrders = useCallback(async (url) => {
+    console.log('url', url)
+    fetch(url)
+      .then((response) => {
+        response.json().then((data) => {
+          console.log('changePageOfOrders', data)
+          setNextPagination(data.next)
+          setPreviousPagination(data.previous)
+          setOrders(data.results)
+          setTotal(response.data.count)
+        })
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }, [])
 
   function goToPageORderDetail(id) {
@@ -96,6 +129,19 @@ export function OrdersProvider({ children }) {
     fetchOrder()
   }, [fetchOrder])
 
+  const fetchCategories = useCallback(async () => {
+    try {
+      const response = await api.get('/categories', {})
+      setCategories(response.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchCategories()
+  }, [fetchCategories])
+
   const createOrder = useCallback(async (data) => {
     const {
       name,
@@ -106,28 +152,23 @@ export function OrdersProvider({ children }) {
       category,
       deadline,
     } = data
-
-    // const response = await api.post('/orders', {
-    //   description,
-    //   price,
-    //   category,
-    //   type,
-    //   createdAt: new Date(),
-    // })
-
-    // setOrders((state) => [response.data, ...state])
-    setOrders((state) => [
-      {
+    data.deadline = new Date(data.deadline).toISOString()
+    try {
+      const response = await api.post('/orders', {
         name,
         description,
         estateAgency,
         company,
         phone,
         category,
-        deadline,
-      },
-      ...state,
-    ])
+        deadline: data.deadline,
+      })
+      alert(`Order was successfully created, status code: ${response.status}`)
+      fetchOrder()
+      navigate('/')
+    } catch (error) {
+      console.error(error)
+    }
   }, [])
 
   return (
@@ -139,6 +180,12 @@ export function OrdersProvider({ children }) {
         orderSelected,
         getOrderDetail,
         goToPageORderDetail,
+        categories,
+        nextPagination,
+        previousPagination,
+        changePageOfOrders,
+        total,
+        deleteOrder,
       }}
     >
       {children}

@@ -58,7 +58,7 @@ export const ContainerDescription = styled.div`
   gap: 1rem;
   display: flex;
   flex-direction: column;
-  /* background: transparent; */
+  flex: 1;
   padding: 1.5rem 2rem;
   border-radius: 16px;
   background: ${(props) => props.theme['purple-100']};
@@ -96,6 +96,34 @@ export const Field = styled.div`
 export const Line = styled.div`
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
   background: transparent;
   gap: 2rem;
+`
+export const DeleteButton = styled.button`
+  display: flex;
+  /* width: 5rem; */
+  gap: 0.3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+  }
+
+  > svg {
+    &:hover {
+      fill: ${(props) => props.theme['purple-500']};
+      cursor: pointer;
+    }
+
+    &:focus {
+      fill: ${(props) => props.theme['purple-500']};
+      outline: transparent;
+      box-shadow: none;
+    }
+  }
 `

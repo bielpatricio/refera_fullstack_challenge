@@ -19,6 +19,19 @@ export const Content = styled(Dialog.Content)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  outline: transparent;
+  box-shadow: none;
+  border: none;
+  &:focus {
+    outline: transparent;
+    box-shadow: none;
+    border: none;
+  }
+
+  h2 {
+    color: ${(props) => props.theme.white};
+  }
 `
 
 export const Line = styled.div`
@@ -77,6 +90,7 @@ export const PhoneInput = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  border: 2px solid ${(props) => props.theme['gray-900']};
 
   &:has(input:focus) {
     box-shadow: none;
@@ -93,6 +107,7 @@ export const PhoneInput = styled.div`
     background: ${(props) => props.theme['gray-900']};
     color: ${(props) => props.theme['gray-300']};
     border: 0;
+    border: 2px solid ${(props) => props.theme['gray-900']};
     &:focus {
       box-shadow: none;
     }
@@ -119,10 +134,11 @@ export const InputField = styled.div`
   > input {
     font-size: ${(props) => props.theme.md};
     border-radius: 6px;
-    border: 0;
     background: ${(props) => props.theme['gray-900']};
     color: ${(props) => props.theme['gray-300']};
     padding: 1rem;
+    border: 2px solid ${(props) => props.theme['gray-900']};
+    box-shadow: none;
 
     &::placeholder {
       color: ${(props) => props.theme['gray-500']};
@@ -137,11 +153,11 @@ export const InputField = styled.div`
   > textarea {
     font-size: ${(props) => props.theme.md};
     border-radius: 6px;
-    border: 0;
     background: ${(props) => props.theme['gray-900']};
     color: ${(props) => props.theme['gray-300']};
     padding: 1rem;
     height: 5rem;
+    border: 2px solid ${(props) => props.theme['gray-900']};
 
     &::placeholder {
       color: ${(props) => props.theme['gray-500']};
@@ -156,11 +172,11 @@ export const InputField = styled.div`
   > select {
     font-size: ${(props) => props.theme.md};
     border-radius: 6px;
-    border: 0;
     background: ${(props) => props.theme['gray-900']};
     color: ${(props) => props.theme['gray-300']};
     padding: 1rem;
     height: 51px;
+    border: 2px solid ${(props) => props.theme['gray-900']};
 
     > option {
       font-size: ${(props) => props.theme.md};
@@ -186,4 +202,25 @@ export const CloseButton = styled(Dialog.Close)`
   line-height: 0; //font-size: 0;
   cursor: pointer;
   color: ${(props) => props.theme['gray-500']};
+
+  outline: transparent;
+  box-shadow: none;
+  border: none;
+  &:focus {
+    outline: transparent;
+    box-shadow: 0;
+    border: none;
+  }
+
+  > svg {
+    &:hover {
+      color: ${(props) => props.theme['purple-300']};
+    }
+
+    &:focus {
+      outline: transparent;
+      box-shadow: 0;
+      border: none;
+    }
+  }
 `

@@ -11,103 +11,51 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 export const OrdersContext = createContext({})
 
-const Mock = [
-  {
-    name: 'Gabriel Patricio',
-    id: '1',
-    phone: '(83) 9 8759-5910',
-    estateAgency: 'Reparos S.A.',
-    category: 'hidraulica',
-    company: 'Imobiliária Sampa',
-    deadline: '10/11/2021',
-    description:
-      'sldjhfvbal;bvpaibvljvhlsfvblsfdihv lashfv;liahsa aaaaaaaaa aaaaaa a aaaa aaaa aaaaaaaa aaaaaaaaaaa vliahvbljk;as fhdvbihkfsagv sldjhfvbal;bvpaibvljvhlsfvblsfdihv lashfv;liahsaaaaaaaaaa aaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaa aavliahvbljk;asfhdvbihkfsagv',
-  },
-  {
-    name: 'Gabriel Patricio',
-    id: '2',
-    phone: '(83) 9 8759-5910',
-    estateAgency: 'Reparos S.A.',
-    category: 'hidraulica',
-    company: 'Imobiliária Sampa',
-    deadline: '10/11/2021',
-    description:
-      'sldjhfvbal;bvpaibvljvhlsfvblsfdihv lashfv;liahsa aaaaaaaaa aaaaaa a aaaa aaaa aaaaaaaa aaaaaaaaaaa vliahvbljk;as fhdvbihkfsagv sldjhfvbal;bvpaibvljvhlsfvblsfdihv lashfv;liahsaaaaaaaaaa aaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaa aavliahvbljk;asfhdvbihkfsagv',
-  },
-  {
-    name: 'Gabriel Patricio',
-    id: '3',
-    phone: '(83) 9 8759-5910',
-    estateAgency: 'Reparos S.A.',
-    category: 'hidraulica',
-    company: 'Imobiliária Sampa',
-    deadline: '10/11/2021',
-    description:
-      'sldjhfvbal;bvpaibvljvhlsfvblsfdihv lashfv;liahsa aaaaaaaaa aaaaaa a aaaa aaaa aaaaaaaa aaaaaaaaaaa vliahvbljk;as fhdvbihkfsagv sldjhfvbal;bvpaibvljvhlsfvblsfdihv lashfv;liahsaaaaaaaaaa aaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaa aavliahvbljk;asfhdvbihkfsagv',
-  },
-  {
-    name: 'Gabriel Patricio',
-    id: '4',
-    phone: '(83) 9 8759-5910',
-    estateAgency: 'Reparos S.A.',
-    category: 'hidraulica',
-    company: 'Imobiliária Sampa',
-    deadline: '10/11/2021',
-    description:
-      'sldjhfvbal;bvpaibvljvhlsfvblsfdihv lashfv;liahsa aaaaaaaaa aaaaaa a aaaa aaaa aaaaaaaa aaaaaaaaaaa vliahvbljk;as fhdvbihkfsagv sldjhfvbal;bvpaibvljvhlsfvblsfdihv lashfv;liahsaaaaaaaaaa aaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaa aavliahvbljk;asfhdvbihkfsagv',
-  },
-]
-
 export function OrdersProvider({ children }) {
   const [orders, setOrders] = useState([])
   const [categories, setCategories] = useState([])
   const [orderSelected, setOrderSelected] = useState()
   const [total, setTotal] = useState(0)
   const navigate = useNavigate()
-  // const params = useParams()
-  // const { orderId } = params
 
   const [nextPagination, setNextPagination] = useState()
   const [previousPagination, setPreviousPagination] = useState()
 
+  /// GET ALL ORDERS IN THE PAGINATION 1 OF API
   const fetchOrder = useCallback(async (page) => {
     try {
       const response = await api.get('/orders', {})
-      console.log('fetchOrder', response.data)
       setNextPagination(response.data.next)
       setPreviousPagination(response.data.previous)
       setOrders(response.data.results)
-      setTotal(response.data.count)
+      setTotal(response.data?.count)
     } catch (error) {
       console.error(error)
     }
   }, [])
 
+  /// GET ORDER DETAIL
   const getOrderDetail = useCallback(async (id) => {
     const response = await api.get(`/orders/${id}`, {})
-    // console.log('getOrderDetail', response.data)
-    setOrderSelected(response.data.data)
+    setOrderSelected(response.data)
   }, [])
 
+  /// DELETE ORDER BY ID
   const deleteOrder = useCallback(async (id) => {
     try {
       const response = await api.delete(`/orders/${id}`, {})
-      // setOrders((state) => {
-      //   return state.filter((order) => order.id !== parseInt(id))
-      // })
       alert(response.data.message)
       navigate('/')
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
   }, [])
 
+  /// CHANGE THE PAGINATION IN THE API AND CHANGE THE DATA OF ORDERS TO SHOW IN THE HOME
   const changePageOfOrders = useCallback(async (url) => {
-    console.log('url', url)
     fetch(url)
       .then((response) => {
         response.json().then((data) => {
-          console.log('changePageOfOrders', data)
           setNextPagination(data.next)
           setPreviousPagination(data.previous)
           setOrders(data.results)
@@ -119,7 +67,8 @@ export function OrdersProvider({ children }) {
       })
   }, [])
 
-  function goToPageORderDetail(id) {
+  /// REDIRECT PAGE HOME TO PAGE DETAILS ORDER
+  function goToPageOrderDetail(id) {
     const newUrl = `/${id}`
     getOrderDetail(id)
     navigate(newUrl)
@@ -129,6 +78,8 @@ export function OrdersProvider({ children }) {
     fetchOrder()
   }, [fetchOrder])
 
+  /// Could create a new context to categories
+  // GET ALL CATEGORIES TO CREATE A ORDER
   const fetchCategories = useCallback(async () => {
     try {
       const response = await api.get('/categories', {})
@@ -141,7 +92,9 @@ export function OrdersProvider({ children }) {
   useEffect(() => {
     fetchCategories()
   }, [fetchCategories])
+  ///
 
+  /// CREATE A NEW ORDER
   const createOrder = useCallback(async (data) => {
     const {
       name,
@@ -160,14 +113,14 @@ export function OrdersProvider({ children }) {
         estateAgency,
         company,
         phone,
-        category,
+        category_id: parseInt(category),
         deadline: data.deadline,
       })
       alert(`Order was successfully created, status code: ${response.status}`)
       fetchOrder()
       navigate('/')
     } catch (error) {
-      console.error(error)
+      alert(`Order error: ${JSON.stringify(error.response.data)}`)
     }
   }, [])
 
@@ -179,7 +132,7 @@ export function OrdersProvider({ children }) {
         createOrder,
         orderSelected,
         getOrderDetail,
-        goToPageORderDetail,
+        goToPageOrderDetail,
         categories,
         nextPagination,
         previousPagination,

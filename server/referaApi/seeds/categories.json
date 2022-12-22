@@ -3,7 +3,7 @@
     "model": "categories.CategoryModel",
     "pk": 1,
     "fields": {
-      "category": "eletrica"
+      "category": "Elétrica"
     }
   },
   {

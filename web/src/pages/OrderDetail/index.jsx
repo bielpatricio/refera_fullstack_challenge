@@ -11,7 +11,7 @@ import {
   DeleteButton,
 } from './styles'
 import { useParams } from 'react-router-dom'
-import { Trash } from 'phosphor-react'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 
 export function OrderDetail() {
   const { orderSelected, getOrderDetail, deleteOrder } = useOrderContext()
@@ -39,8 +39,12 @@ export function OrderDetail() {
               <h2>{orderSelected?.phone}</h2>
             </Field>
           </Container>
-          <DeleteButton onClick={() => deleteOrder(orderId)}>
-            <Trash size={32} color="#7e22ce" weight="fill" />
+          <DeleteButton
+            title="Delete order"
+            onClick={() => deleteOrder(orderId)}
+          >
+            {/* <Trash size={32} color="#7e22ce" weight="fill" /> */}
+            <DeleteForeverIcon />
           </DeleteButton>
         </Line>
         <Line>
@@ -51,7 +55,7 @@ export function OrderDetail() {
             </Field>
             <Field>
               <h3>Category: </h3>
-              <h2>{orderSelected?.category}</h2>
+              <h2>{orderSelected?.category.category}</h2>
             </Field>
           </Container>
 
@@ -62,7 +66,11 @@ export function OrderDetail() {
             </Field>
             <Field>
               <h3>Deadline: </h3>
-              <h2>{orderSelected?.deadline}</h2>
+              <h2>
+                {new Date(orderSelected?.deadline).getDate()}/
+                {new Date(orderSelected?.deadline).getMonth() + 1}/
+                {new Date(orderSelected?.deadline).getFullYear()}
+              </h2>
             </Field>
           </Container>
         </Line>

@@ -21,39 +21,61 @@ export const Line = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
-  > h1 {
+  > h3 {
+    font-size: 18px;
+    color: ${(props) => props.theme['gray-500']};
+    font-weight: bold;
+  }
+
+  > h2 {
     font-size: 24px;
+    color: ${(props) => props.theme['gray-900']};
+    font-weight: bold;
+  }
+
+  > h1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 32px;
     color: ${(props) => props.theme['gray-900']};
     font-weight: bold;
   }
 `
 export const PaginationButton = styled.button`
-  padding: 0.5rem;
+  /* padding: 0.5rem; */
   display: flex;
   /* width: 5rem; */
   gap: 0.3rem;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  background-color: ${(props) => props.theme['purple-500']};
+  background-color: transparent;
   border: none;
   text-decoration: none;
-
-  > h3 {
-    font-size: 16px;
-    color: ${(props) => props.theme['gray-900']};
-    font-weight: bold;
-  }
-
   &:hover {
-    background-color: ${(props) => props.theme['purple-700']};
     cursor: pointer;
   }
 
   &:focus {
-    background-color: ${(props) => props.theme['purple-500']};
     outline: transparent;
-    box-shadow: 0 0 0 1px ${(props) => props.theme['purple-500']};
+    box-shadow: none;
+  }
+
+  > svg {
+    align-items: center;
+    color: ${(props) => props.theme['purple-500']};
+    &:hover {
+      color: ${(props) => props.theme['purple-700']};
+      cursor: pointer;
+    }
+
+    &:focus {
+      color: ${(props) => props.theme['purple-500']};
+      outline: transparent;
+      box-shadow: 0 0 0 1px ${(props) => props.theme['purple-500']};
+    }
   }
 `
 export const NewOrderButton = styled.button`

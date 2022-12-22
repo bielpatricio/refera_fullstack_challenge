@@ -2,10 +2,12 @@ import styled from 'styled-components'
 
 export const OrderTable = styled.table`
   width: 100%;
+  height: 100%;
   border-collapse: separate;
   border-spacing: 0 0.5rem;
   margin-top: 1.5rem;
   color: ${(props) => props.theme['gray-300']};
+
   td {
     padding: 1.25rem 2rem;
     text-align: center;

@@ -114,14 +114,22 @@ export const DeleteButton = styled.button`
     cursor: pointer;
   }
 
+  &:focus {
+    outline: transparent;
+    box-shadow: none;
+  }
+
   > svg {
+    color: ${(props) => props.theme['purple-500']};
+    width: 2rem;
+    height: 2rem;
     &:hover {
-      fill: ${(props) => props.theme['purple-500']};
+      color: ${(props) => props.theme['purple-700']};
       cursor: pointer;
     }
 
     &:focus {
-      fill: ${(props) => props.theme['purple-500']};
+      color: ${(props) => props.theme['purple-500']};
       outline: transparent;
       box-shadow: none;
     }

@@ -2,8 +2,8 @@ import { useOrderContext } from '../../../contexts/OrdersContext'
 import { OrderTable } from './styles'
 import { useNavigate } from 'react-router-dom'
 
-export function Table() {
-  const { orders, goToPageORderDetail } = useOrderContext()
+export function TableComponent() {
+  const { orders, goToPageOrderDetail } = useOrderContext()
 
   return (
     <OrderTable>
@@ -20,7 +20,7 @@ export function Table() {
       <tbody>
         {orders?.map((order) => {
           return (
-            <tr key={order.id} onClick={() => goToPageORderDetail(order.id)}>
+            <tr key={order.id} onClick={() => goToPageOrderDetail(order.id)}>
               <td>{order?.id}</td>
               <td>{order?.category.category}</td>
               <td>{`${order?.name} - ${order?.phone}`}</td>

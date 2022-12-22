@@ -8,22 +8,20 @@ import {
   InputField,
   PhoneInput,
 } from './styles'
-import { X } from 'phosphor-react'
+import CloseIcon from '@mui/icons-material/Close'
 import * as z from 'zod'
-import { Controller, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import InputMask from 'react-input-mask'
 import { useOrderContext } from '../../contexts/OrdersContext'
 
 const newOrderFormSchema = z.object({
   name: z.string().nonempty('Field required'),
-  description: z.string(),
+  description: z.string().nonempty('Field required'),
   estateAgency: z.string().nonempty('Field required'),
   company: z.string().nonempty('Field required'),
   phone: z.string().nonempty('Field required'),
   category: z.string().nonempty('Field required'),
   deadline: z.string().nonempty('Field required'),
-  // .datetime({ message: 'Invalid datetime string! Must be UTC.' }),
 })
 
 export function NewOrderModal() {
@@ -39,10 +37,8 @@ export function NewOrderModal() {
   })
 
   const { createOrder, categories } = useOrderContext()
-  console.log('categories: ', categories)
 
   async function handleCreateNewOrder(data) {
-    console.log('created order', data)
     const {
       name,
       description,
@@ -73,57 +69,32 @@ export function NewOrderModal() {
         <Dialog.Title>New Order</Dialog.Title>
 
         <CloseButton>
-          <X size={24} />
+          <CloseIcon />
         </CloseButton>
 
         <FormNewOrder onSubmit={handleSubmit(handleCreateNewOrder)}>
           <Line>
             <InputField width="100%">
-              <label>Contact Name*</label>
+              <label>Contact Name</label>
               <input {...register('name')} type="text" placeholder="Name" />
             </InputField>
 
             <InputField width="100%">
-              <label>Contact Phone*</label>
+              <label>Contact Phone</label>
               <PhoneInput>
                 <span>+55</span>
                 <input
                   {...register('phone')}
-                  type="text"
-                  placeholder="Phone"
+                  type="number"
+                  placeholder="(99) 9 9999-9999"
                   mask="(99) 9 9999-9999"
+                  maxLength={11}
                 />
-                {/* <InputMask
-                  {...register('phone')}
-                  type="text"
-                  placeholder="Phone"
-                  required
-                  name="phone"
-                  id="phone"
-                  mask="(99) 9 9999-9999"
-                /> */}
-                {/* <Controller
-                  control={control}
-                  name="phone"
-                  render={({ field }) => {
-                    return (
-                      <InputMask
-                        name="phone"
-                        id="phone"
-                        type="text"
-                        placeholder="Phone"
-                        required
-                        mask="(99) 9 9999-9999"
-                        value={field.value}
-                      />
-                    )
-                  }}
-                /> */}
               </PhoneInput>
             </InputField>
 
             <InputField width="100%">
-              <label>Real Estate Agency*</label>
+              <label>Real Estate Agency</label>
               <input
                 {...register('estateAgency')}
                 type="text"
@@ -143,7 +114,7 @@ export function NewOrderModal() {
             </InputField>
 
             <InputField width="75%">
-              <label>Company*</label>
+              <label>Company</label>
               <input
                 {...register('company')}
                 type="text"
@@ -154,7 +125,7 @@ export function NewOrderModal() {
 
           <Line>
             <InputField width="100%">
-              <label>Select the order Category*</label>
+              <label>Select the order Category</label>
               <select defaultValue="" {...register('category')}>
                 <option disabled value="">
                   Select the order Category
@@ -169,7 +140,7 @@ export function NewOrderModal() {
               </select>
             </InputField>
             <InputField width="75%">
-              <label>Deadline*</label>
+              <label>Deadline</label>
               <input {...register('deadline')} type="date" />
             </InputField>
           </Line>

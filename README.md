@@ -12,7 +12,7 @@ This project was proposed by the refer group as a challenge. The goal of this ch
   <p><a href="#contact" title=" go to Contact">Contact</a></p>
 </p>
 
-- [go to How run the program?](https://github.com/bielpatricio/refera_fullstack_challenge/blob/master/README.md#how-does-the-program-work)
+- [go to How run the program?](#how-does-the-program-work)
 
 # How run the program?
   1. The first step is to clone the project somewhere on your machine: `git clone https://github.com/bielpatricio/refera_fullstack_challenge.git`;

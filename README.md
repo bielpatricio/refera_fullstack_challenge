@@ -2,7 +2,19 @@
 
 This project was proposed by the refer group as a challenge. The goal of this challenge is to create a web application to manage maintanence orders from Refera, following the Acceptance criteria. The frontend of application a page to list all orders and the backend contains a simple REST API service and has a connection to a database.
 
-## How to put the program to run?
+## Contents
+
+<p align="center">
+  <p><a href="#'How run the program?'" title=" go to How run the program?">How run the program?</a></p>
+  <p><a href="##How does the program work?" title=" go to How does the program work?">How does the program work?</a></p>
+  <p><a href="##Server" title=" go to Server">Server</a></p>
+  <p><a href="##WEB" title=" go to WEB">WEB</a></p>
+  <p><a href="#contact" title=" go to Contact">Contact</a></p>
+</p>
+
+- [go to How run the program?](/#how-does-the-program-work)
+
+# How run the program?
   1. The first step is to clone the project somewhere on your machine: `git clone https://github.com/bielpatricio/refera_fullstack_challenge.git`;
   2. For the next step it is necessary to have docker running and preferably open;
   3. Now access the terminal inside the project folder;
@@ -81,7 +93,7 @@ This project was proposed by the refer group as a challenge. The goal of this ch
         
 Here are some prints of Postman and Dbeaver:
 
-![image](https://user-images.githubusercontent.com/32223762/209233945-9875c2b9-885d-4c67-ba7e-dfe848a20895.png)
+![image](https://user-images.githubusercontent.com/32223762/209236553-0a0924bf-db93-4dd6-a42c-e2db149a65f8.png)
 
 ![image](https://user-images.githubusercontent.com/32223762/209234082-ba1e11b3-0ac0-44d1-8726-2c14d9269426.png)
 
@@ -148,7 +160,14 @@ Here are some prints of Postman and Dbeaver:
 
 
 ### Some references:
+
 https://www.django-rest-framework.org/tutorial/quickstart/#urls
 https://medium.com/djangotube/django-sqlite-to-postgresql-database-migration-e3c1f76711e1
 https://www.cloudbees.com/blog/using-docker-compose-for-python-development
 https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-20-04
+
+# Contact
+
+Gabriel Patrício - gabrieltp087@gmail.com - [https://github.com/bielpatricio/](https://github.com/bielpatricio) -[https://www.linkedin.com/in/gabriel-patricio/](https://www.linkedin.com/in/gabriel-patricio/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>

@@ -3,16 +3,11 @@
 This project was proposed by the refer group as a challenge. The goal of this challenge is to create a web application to manage maintanence orders from Refera, following the Acceptance criteria. The frontend of application a page to list all orders and the backend contains a simple REST API service and has a connection to a database.
 
 ## Contents
-
-<p align="center">
-  <p><a href="#'How run the program?'" title=" go to How run the program?">How run the program?</a></p>
-  <p><a href="##How does the program work?" title=" go to How does the program work?">How does the program work?</a></p>
-  <p><a href="##Server" title=" go to Server">Server</a></p>
-  <p><a href="##WEB" title=" go to WEB">WEB</a></p>
-  <p><a href="#contact" title=" go to Contact">Contact</a></p>
-</p>
-
-- [go to How run the program?](#how-does-the-program-work)
+- [go to How run the program?](#how-run-the-program)
+- [go to How does the program work?](#how-does-the-program-work)
+- [go to Server](#server)
+- [go to WEB](#web)
+- [go to Contact](#contact)
 
 # How run the program?
   1. The first step is to clone the project somewhere on your machine: `git clone https://github.com/bielpatricio/refera_fullstack_challenge.git`;
@@ -170,4 +165,4 @@ https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your
 
 Gabriel Patrício - gabrieltp087@gmail.com - [https://github.com/bielpatricio/](https://github.com/bielpatricio) -[https://www.linkedin.com/in/gabriel-patricio/](https://www.linkedin.com/in/gabriel-patricio/)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right"><a href="#refera---fullstack-code-challenge">back to top</a></p>

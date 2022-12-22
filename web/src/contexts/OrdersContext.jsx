@@ -45,9 +45,11 @@ export function OrdersProvider({ children }) {
     try {
       const response = await api.delete(`/orders/${id}`, {})
       alert(response.data.message)
+      fetchOrder()
       navigate('/')
     } catch (e) {
       console.error(e)
+      alert(`Delete order error: ${JSON.stringify(e.response.data)}`)
     }
   }, [])
 

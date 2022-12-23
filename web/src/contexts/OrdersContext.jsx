@@ -16,15 +16,24 @@ export function OrdersProvider({ children }) {
   const [categories, setCategories] = useState([])
   const [orderSelected, setOrderSelected] = useState()
   const [total, setTotal] = useState(0)
+  const [page, setPage] = useState(1)
+  const [order, setOrder] = useState('asc')
+  const [orderBy, setOrderBy] = useState('id')
   const navigate = useNavigate()
 
   const [nextPagination, setNextPagination] = useState()
   const [previousPagination, setPreviousPagination] = useState()
 
   /// GET ALL ORDERS IN THE PAGINATION 1 OF API
-  const fetchOrder = useCallback(async (page) => {
+  const fetchOrder = useCallback(async () => {
     try {
-      const response = await api.get('/orders', {})
+      const response = await api.get('/orders', {
+        params: {
+          page,
+          order,
+          orderBy,
+        },
+      })
       setNextPagination(response.data.next)
       setPreviousPagination(response.data.previous)
       setOrders(response.data.results)
@@ -32,7 +41,7 @@ export function OrdersProvider({ children }) {
     } catch (error) {
       console.error(error)
     }
-  }, [])
+  }, [page, order, orderBy])
 
   /// GET ORDER DETAIL
   const getOrderDetail = useCallback(async (id) => {
@@ -54,6 +63,23 @@ export function OrdersProvider({ children }) {
   }, [])
 
   /// CHANGE THE PAGINATION IN THE API AND CHANGE THE DATA OF ORDERS TO SHOW IN THE HOME
+  const changePageOrders = useCallback(async (isNext) => {
+    setOrder('asc')
+    setOrderBy('id')
+    setPage((p) => (isNext ? p + 1 : p - 1))
+  }, [])
+
+  const changeOrderBy = (orderBy) => {
+    setOrderBy((currOrderBy) => {
+      if (currOrderBy === orderBy) {
+        setOrder((o) => (o === 'desc' ? 'asc' : 'desc'))
+      } else {
+        setOrder('asc')
+      }
+      return orderBy
+    })
+  }
+
   const changePageOfOrders = useCallback(async (url) => {
     fetch(url)
       .then((response) => {
@@ -78,7 +104,7 @@ export function OrdersProvider({ children }) {
 
   useEffect(() => {
     fetchOrder()
-  }, [fetchOrder])
+  }, [fetchOrder, page, order, orderBy])
 
   /// Could create a new context to categories
   // GET ALL CATEGORIES TO CREATE A ORDER
@@ -141,6 +167,11 @@ export function OrdersProvider({ children }) {
         changePageOfOrders,
         total,
         deleteOrder,
+        page,
+        order,
+        orderBy,
+        changeOrderBy,
+        changePageOrders,
       }}
     >
       {children}

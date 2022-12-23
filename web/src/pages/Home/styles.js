@@ -11,6 +11,7 @@ export const HomeContainer = styled.main`
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-start;
+  gap: 1rem;
 `
 export const Line = styled.div`
   width: 100%;
@@ -18,7 +19,7 @@ export const Line = styled.div`
 
   ${(props) => props.flex === 1 && 'flex: 1;'};
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
   > h3 {
@@ -65,16 +66,16 @@ export const PaginationButton = styled.button`
 
   > svg {
     align-items: center;
-    color: ${(props) => props.theme['purple-500']};
+    color: ${(props) => props.theme['orange-500']};
     &:hover {
-      color: ${(props) => props.theme['purple-700']};
+      color: ${(props) => props.theme['orange-700']};
       cursor: pointer;
     }
 
     &:focus {
-      color: ${(props) => props.theme['purple-500']};
+      color: ${(props) => props.theme['orange-500']};
       outline: transparent;
-      box-shadow: 0 0 0 1px ${(props) => props.theme['purple-500']};
+      box-shadow: 0 0 0 1px ${(props) => props.theme['orange-500']};
     }
   }
 `

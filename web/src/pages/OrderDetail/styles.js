@@ -32,7 +32,7 @@ export const CardContainer = styled.div`
   max-width: 70rem;
   height: 100%;
   padding: 3rem;
-  border: 3px solid ${(props) => props.theme['purple-500']};
+  border: 3px solid ${(props) => props.theme['orange-500']};
   flex: 1;
   border-radius: 16px;
   display: flex;
@@ -50,7 +50,7 @@ export const Container = styled.div`
   /* background: transparent; */
   padding: 1.5rem 2rem;
   border-radius: 16px;
-  background: ${(props) => props.theme['purple-100']};
+  background: ${(props) => props.theme['orange-100']};
 `
 export const ContainerDescription = styled.div`
   width: 100%;
@@ -61,7 +61,7 @@ export const ContainerDescription = styled.div`
   flex: 1;
   padding: 1.5rem 2rem;
   border-radius: 16px;
-  background: ${(props) => props.theme['purple-100']};
+  background: ${(props) => props.theme['orange-100']};
 
   > h3 {
     font-size: ${(props) => props.theme.lg};
@@ -120,16 +120,16 @@ export const DeleteButton = styled.button`
   }
 
   > svg {
-    color: ${(props) => props.theme['purple-500']};
+    color: ${(props) => props.theme['orange-500']};
     width: 2rem;
     height: 2rem;
     &:hover {
-      color: ${(props) => props.theme['purple-700']};
+      color: ${(props) => props.theme['orange-700']};
       cursor: pointer;
     }
 
     &:focus {
-      color: ${(props) => props.theme['purple-500']};
+      color: ${(props) => props.theme['orange-500']};
       outline: transparent;
       box-shadow: none;
     }

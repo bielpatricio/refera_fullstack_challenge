@@ -1,40 +1,95 @@
 import { useOrderContext } from '../../../contexts/OrdersContext'
-import { OrderTable } from './styles'
+import { OrderTable, TableRowBody, TableCell } from './styles'
 import { useNavigate } from 'react-router-dom'
+import {
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+  TableSortLabel,
+} from '@mui/material'
+import { useCallback } from 'react'
 
 export function TableComponent() {
-  const { orders, goToPageOrderDetail } = useOrderContext()
+  const {
+    orders,
+    goToPageOrderDetail,
+    total,
+    changePageOrders,
+    page,
+    order,
+    orderBy,
+    changeOrderBy,
+  } = useOrderContext()
+
+  const handleChangePage = useCallback(
+    (_, newPage) => {
+      return changePageOrders(Boolean(page - 1 < newPage))
+    },
+    [page, changePageOrders],
+  )
+
+  const createSortHandler = (col) => () => {
+    changeOrderBy(col)
+  }
 
   return (
-    <OrderTable>
-      <thead>
-        <tr>
-          <th> ID </th>
-          <th> Category </th>
-          <th> Contact </th>
-          <th> Agency </th>
-          <th> Company </th>
-          <th> Deadline </th>
-        </tr>
-      </thead>
-      <tbody>
-        {orders?.map((order) => {
-          return (
-            <tr key={order.id} onClick={() => goToPageOrderDetail(order.id)}>
-              <td>{order?.id}</td>
-              <td>{order?.category.category}</td>
-              <td>{`${order?.name} - ${order?.phone}`}</td>
-              <td>{order?.estateAgency}</td>
-              <td>{order?.company}</td>
-              <td>
-                {new Date(order?.deadline).getDate()}/
-                {new Date(order?.deadline).getMonth() + 1}/
-                {new Date(order?.deadline).getFullYear()}
-              </td>
-            </tr>
-          )
-        })}
-      </tbody>
-    </OrderTable>
+    <>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              {[
+                { name: 'ID', id: 'id' },
+                { name: 'Category', id: 'category_id' },
+                { name: 'Contact', id: 'name' },
+                { name: 'Agency', id: 'estateAgency' },
+                { name: 'Company', id: 'company' },
+                { name: 'Deadline', id: 'deadLine' },
+              ].map((col) => (
+                <TableCell key={col.id}>
+                  <TableSortLabel
+                    active={orderBy === col.id}
+                    direction={orderBy === col.id ? order : 'asc'}
+                    onClick={createSortHandler(col.id)}
+                  >
+                    {col.name}
+                  </TableSortLabel>
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {orders?.map((order) => {
+              return (
+                <TableRowBody
+                  key={order.id}
+                  onClick={() => goToPageOrderDetail(order.id)}
+                >
+                  <TableCell>{order?.id}</TableCell>
+                  <TableCell>{order?.category.category}</TableCell>
+                  <TableCell>{`${order?.name} - ${order?.phone}`}</TableCell>
+                  <TableCell>{order?.estateAgency}</TableCell>
+                  <TableCell>{order?.company}</TableCell>
+                  <TableCell>
+                    {new Date(order?.deadline).toLocaleDateString()}
+                  </TableCell>
+                </TableRowBody>
+              )
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[]}
+        rowsPerPage={10}
+        component="div"
+        count={total}
+        page={page - 1}
+        onPageChange={handleChangePage}
+      />
+    </>
   )
 }

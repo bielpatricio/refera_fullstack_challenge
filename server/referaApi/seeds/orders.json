@@ -9,7 +9,8 @@
       "phone": "83998602804",
       "estateAgency": "GO",
       "company": "Github",
-      "deadline": "2023-04-13T00:00:00.000Z"
+      "deadline": "2023-04-13T00:00:00.000Z",
+      "description": "Fix bug from site"
     }
   },
   {
@@ -22,7 +23,8 @@
       "phone": "83999305709",
       "estateAgency": "Imobiliária",
       "company": "nelogica",
-      "deadline": "2023-03-02T00:00:00.000Z"
+      "deadline": "2023-03-02T00:00:00.000Z",
+      "description": "Check the website"
     }
   },
   {
@@ -35,7 +37,8 @@
       "phone": "81987652534",
       "estateAgency": "Imobiliária",
       "company": "Viena",
-      "deadline": "2023-06-01T00:00:00.000Z"
+      "deadline": "2023-06-01T00:00:00.000Z",
+      "description": "Go check the call from Wilson"
     }
   },
   {
@@ -48,7 +51,8 @@
       "phone": "87956289759",
       "estateAgency": "Software",
       "company": "Construtec",
-      "deadline": "2022-09-06T00:00:00.000Z"
+      "deadline": "2022-09-06T00:00:00.000Z",
+      "description": "Create a new feature for the Construtec app"
     }
   },
   {
@@ -61,7 +65,8 @@
       "phone": "83996410471",
       "estateAgency": "Vistoria",
       "company": "viena",
-      "deadline": "2022-12-23T00:00:00.000Z"
+      "deadline": "2022-12-23T00:00:00.000Z",
+      "description": "Checar goteira dentro de apartamento"
     }
   },
   {
@@ -74,7 +79,8 @@
       "phone": "85988865623",
       "estateAgency": "Vistoria",
       "company": "Viena",
-      "deadline": "2022-12-20T00:00:00.000Z"
+      "deadline": "2022-12-20T00:00:00.000Z",
+      "description": "Preencher documentos da vistoria"
     }
   },
   {
@@ -87,7 +93,8 @@
       "phone": "8956912374",
       "estateAgency": "software",
       "company": "Nelogica",
-      "deadline": "2025-06-27T00:00:00.000Z"
+      "deadline": "2025-06-27T00:00:00.000Z",
+      "description": "Fix bug"
     }
   },
   {
@@ -100,7 +107,8 @@
       "phone": "83995412369",
       "estateAgency": "Desenvolvimento",
       "company": "Refera",
-      "deadline": "2024-02-01T00:00:00.000Z"
+      "deadline": "2024-02-01T00:00:00.000Z",
+      "description": "Desenvolvendo app para o sistema de monitoramento de bugs"
     }
   },
   {
@@ -113,7 +121,8 @@
       "phone": "83987595910",
       "estateAgency": "Reparos S.A.",
       "company": "Refera",
-      "deadline": "2022-01-12T19:50:21.817Z"
+      "deadline": "2022-01-12T19:50:21.817Z",
+      "description": "Installl all dependecies"
     }
   },
   {
@@ -126,7 +135,36 @@
       "phone": "83988384745",
       "estateAgency": "Construct S.A.",
       "company": "Refera",
-      "deadline": "2020-12-12T23:50:21.817Z"
+      "deadline": "2020-12-12T23:50:21.817Z",
+      "description": ""
+    }
+  },
+  {
+    "model": "orders.OrderModel",
+    "pk": 2,
+    "fields": {
+      "id": 2,
+      "category_id": 2,
+      "name": "Raianna",
+      "phone": "83956852476",
+      "estateAgency": "Corretora",
+      "description": "Visitar cliente",
+      "company": "Constructor",
+      "deadline": "2022-01-28T00:00:00Z"
+    }
+  },
+  {
+    "model": "orders.OrderModel",
+    "pk": 2,
+    "fields": {
+      "id": 2,
+      "category_id": 5,
+      "name": "Andreia",
+      "phone": "83956852476",
+      "estateAgency": "Corretora",
+      "description": "Mostrar apartamento para cliente",
+      "company": "Plantec",
+      "deadline": "2022-12-28T00:00:00Z"
     }
   }
 ]

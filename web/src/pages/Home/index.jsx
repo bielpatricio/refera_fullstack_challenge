@@ -18,7 +18,7 @@ export function Home() {
   return (
     <HomeContainer>
       <Line>
-        <h2>Number total of orders: {total}</h2>
+        <h2>Total of orders: {total}</h2>
 
         <Dialog.Root>
           <Dialog.Trigger asChild>
@@ -30,9 +30,6 @@ export function Home() {
           <NewOrderModal />
         </Dialog.Root>
       </Line>
-      <Line>
-        <h3>Number por page: 8</h3>
-      </Line>
       {total > 0 ? (
         <TableComponent />
       ) : (
@@ -40,31 +37,6 @@ export function Home() {
           <h1>There are still no orders registered in the database</h1>
         </Line>
       )}
-
-      <Line flex={1}>
-        {!!previousPagination && (
-          <>
-            <PaginationButton
-              onClick={() => changePageOfOrders(previousPagination)}
-            >
-              {/* <SkipBackCircle size={32} color="#fff" weight="fill" /> */}
-              <ArrowBackIosNewIcon />
-            </PaginationButton>
-            <p> </p>
-          </>
-        )}
-        {!!nextPagination && (
-          <>
-            <p> </p>
-            <PaginationButton
-              onClick={() => changePageOfOrders(nextPagination)}
-            >
-              {/* <SkipForwardCircle size={32} color="#fff" weight="fill" /> */}
-              <ArrowForwardIosIcon />
-            </PaginationButton>
-          </>
-        )}
-      </Line>
     </HomeContainer>
   )
 }

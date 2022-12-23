@@ -9,7 +9,10 @@ from rest_framework.pagination import PageNumberPagination
 
 class RoutePosts(APIView):
     def get(self, request: Request):
-        order = OrderModel.objects.prefetch_related('category').all()
+        tag = "-" if request.query_params.get('order') == "desc"else ""
+        orderBy = request.query_params.get('orderBy')
+        order = OrderModel.objects.prefetch_related(
+            'category').all().order_by(tag + orderBy)
         paginator = PageNumberPagination()
         result_page = paginator.paginate_queryset(order, request)
         order = OrderSerializer(result_page, many=True)

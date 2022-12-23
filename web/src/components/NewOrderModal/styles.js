@@ -62,8 +62,8 @@ export const FormNewOrder = styled.form`
     height: 3rem;
     width: 5rem;
     border: 0;
-    background: ${(props) => props.theme['purple-500']};
-    color: ${(props) => props.theme.white};
+    background: ${(props) => props.theme['orange-700']};
+    color: ${(props) => props.theme['gray-100']};
     font-weight: bold;
     padding: 0 1.25rem;
     border-radius: 6px;
@@ -76,7 +76,7 @@ export const FormNewOrder = styled.form`
     }
 
     &:not(:disabled):hover {
-      background: ${(props) => props.theme['purple-700']};
+      background: ${(props) => props.theme['orange-500']};
       transition: background-color 0.2s;
     }
   }
@@ -84,17 +84,17 @@ export const FormNewOrder = styled.form`
 export const PhoneInput = styled.div`
   border-radius: 6px;
   border: 0;
-  background: ${(props) => props.theme['gray-900']};
+  background: ${(props) => props.theme['gray-700']};
   color: ${(props) => props.theme['gray-300']};
   padding: 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  border: 2px solid ${(props) => props.theme['gray-900']};
+  border: 2px solid ${(props) => props.theme['gray-700']};
 
   &:has(input:focus) {
     box-shadow: none;
-    border: 2px solid ${(props) => props.theme['purple-500']};
+    border: 2px solid ${(props) => props.theme['orange-500']};
   }
 
   spam {
@@ -104,10 +104,10 @@ export const PhoneInput = styled.div`
 
   > input {
     font-size: ${(props) => props.theme.md};
-    background: ${(props) => props.theme['gray-900']};
+    background: ${(props) => props.theme['gray-700']};
     color: ${(props) => props.theme['gray-300']};
     border: 0;
-    border: 2px solid ${(props) => props.theme['gray-900']};
+    border: 2px solid ${(props) => props.theme['gray-700']};
     &:focus {
       box-shadow: none;
     }
@@ -134,10 +134,10 @@ export const InputField = styled.div`
   > input {
     font-size: ${(props) => props.theme.md};
     border-radius: 6px;
-    background: ${(props) => props.theme['gray-900']};
+    background: ${(props) => props.theme['gray-700']};
     color: ${(props) => props.theme['gray-300']};
     padding: 1rem;
-    border: 2px solid ${(props) => props.theme['gray-900']};
+    border: 2px solid ${(props) => props.theme['gray-700']};
     box-shadow: none;
 
     &::placeholder {
@@ -146,18 +146,18 @@ export const InputField = styled.div`
 
     &:focus {
       box-shadow: none;
-      border: 2px solid ${(props) => props.theme['purple-500']};
+      border: 2px solid ${(props) => props.theme['orange-500']};
     }
   }
 
   > textarea {
     font-size: ${(props) => props.theme.md};
     border-radius: 6px;
-    background: ${(props) => props.theme['gray-900']};
+    background: ${(props) => props.theme['gray-700']};
     color: ${(props) => props.theme['gray-300']};
     padding: 1rem;
     height: 5rem;
-    border: 2px solid ${(props) => props.theme['gray-900']};
+    border: 2px solid ${(props) => props.theme['gray-700']};
 
     &::placeholder {
       color: ${(props) => props.theme['gray-500']};
@@ -165,18 +165,18 @@ export const InputField = styled.div`
 
     &:focus {
       box-shadow: none;
-      border: 2px solid ${(props) => props.theme['purple-500']};
+      border: 2px solid ${(props) => props.theme['orange-500']};
     }
   }
 
   > select {
     font-size: ${(props) => props.theme.md};
     border-radius: 6px;
-    background: ${(props) => props.theme['gray-900']};
+    background: ${(props) => props.theme['gray-700']};
     color: ${(props) => props.theme['gray-300']};
     padding: 1rem;
     height: 51px;
-    border: 2px solid ${(props) => props.theme['gray-900']};
+    border: 2px solid ${(props) => props.theme['gray-700']};
 
     > option {
       font-size: ${(props) => props.theme.md};
@@ -189,7 +189,7 @@ export const InputField = styled.div`
 
     &:focus {
       box-shadow: none;
-      border: 2px solid ${(props) => props.theme['purple-500']};
+      border: 2px solid ${(props) => props.theme['orange-500']};
     }
   }
 `
@@ -214,7 +214,7 @@ export const CloseButton = styled(Dialog.Close)`
 
   > svg {
     &:hover {
-      color: ${(props) => props.theme['purple-300']};
+      color: ${(props) => props.theme['orange-300']};
     }
 
     &:focus {

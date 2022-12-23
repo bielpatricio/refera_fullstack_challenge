@@ -13,17 +13,14 @@ This project was proposed by the refera group as a challenge. The goal of this c
   1. The first step is to clone the project somewhere on your machine: `git clone https://github.com/bielpatricio/refera_fullstack_challenge.git`;
   2. For the next step it is necessary to have docker running and preferably open;
   3. Now access the terminal inside the project folder;
-  4. Enter the server folder (`cd server`) and copy the .env.example file to a new file .env;    
-   - ( If you will not run in docker, make the changes suggested inside the file .env.example )
-  5. Run the following command: `docker compose up --build`;
-  6. Now that the backend is running, go back to the project's root folder (`cd ..`), go to the web folder (`cd web`);
-  7. Type the following command to install all dependencies: `npm install`;
-  8. Now type the following command: `npm run dev`;
+  4. Enter the server folder (`cd server`) and copy the .env.example file to a new file .env;
+  6. Run the following command: `docker compose up --build && docker compose up` if you want run in docker;
+  7. Now that the backend is running, go back to the project's root folder (`cd ..`), go to the web folder (`cd web`);
+  8. Type the following command to install all dependencies: `npm install`;
+  9. Now type the following command: `npm run dev`;
   
   Now front and back is running on your machine.
   To access the application, just go to a browser and access the page: http://localhost:3000/
-  
-  Obs: Once step 4 is done, the docker images will already be created on your machine, to run them again, just run the command `docker compose up` inside the server folder. No need --build.
 
 ## How the program work?
    - A main page was built that will list some orders. To optimize the loading time, a paging system was implemented in the API, so if the amount of data in the database is very big, it doesn't take to long to load the page, so the program will show every 8 orders. To access the other orders, you need to click on the lower right button and that way you will access the next 8 orders in the database, and to go back to the previous 8 orders just click on the lower left button that will appear on the screen.

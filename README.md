@@ -23,7 +23,7 @@ This project was proposed by the refera group as a challenge. The goal of this c
   To access the application, just go to a browser and access the page: http://localhost:3000/
 
 ## How the program work?
-   - A main page was built that will list some orders. To optimize the loading time, a paging system was implemented in the API, so if the amount of data in the database is very big, it doesn't take to long to load the page, so the program will show every 8 orders. To access the other orders, you need to click on the lower right button and that way you will access the next 8 orders in the database, and to go back to the previous 8 orders just click on the lower left button that will appear on the screen.
+   - A main page was built that will list some orders. To optimize the loading time, a paging system was implemented in the API, so if the amount of data in the database is very big, it doesn't take to long to load the page, so the program will show every 10 orders. To access the other orders, you need to click on the lower right button and that way you will access the next 10 orders in the database, and to go back to the previous 10 orders just click on the lower left button that will appear on the screen. To order the results by each column it was necessary to change the backend too, because when you sort in the frontend we still don't have access to all data from the database, so when you click to order by column, the backend do this order to return to frontend the right data. So when you click in the column you order not just the 10 data that is showing on the front, but referring to the entire database.
   -  Still on the initial screen we have some functionalities available, one of them is to click on the button `Open new order` that will open a modal to create a new order in the database, all fields are mandatory. In the `select categories` category options that exist in the database will appear, to create more options or delete some, just make an HTTP request referring to the category routes that are listed below, and you will have available to create your order with the new category.
   -  To show more knowledge of reactJS, a route system was created on the front-end, where when you click on one of the orders on the home page, you are redirected to a page where you will have detailed information about the selected order. In addition to the information, the page also has a button in the upper right corner (inside the field) that allows you to delete the order. To return to the initial page, one of the options is to click on the Refera icon in the upper left corner, it will always redirect to the application's initial page.
   
@@ -39,6 +39,8 @@ This project was proposed by the refera group as a challenge. The goal of this c
   3. Database to store data from the following resources
     - Order
     - Category
+  4. Suport to Paginantion on frontend
+  5. Suport to Order data on frontend
    
   ### Order
    For the order, 5 routes were created:
@@ -149,18 +151,23 @@ This project was proposed by the refera group as a challenge. The goal of this c
  
 ### Below are some screenshots of the running application.
   
- <!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
-  <img src="https://user-images.githubusercontent.com/32223762/209229915-46474269-3ec8-42ac-a2bf-f0e09c737671.png" width="700" title="Postman">
-  [Initial page, each line of the table leads to the Details page of the order that is in the line]
+ <!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> --> 
+ <img src="https://user-images.githubusercontent.com/32223762/209338489-7465648f-7c6b-4fa5-b6a7-78f0e81ce097.png" width="700" title="Postman">
+  [Initial page order by id desc, each line of the table is a link to the Details page of the order that is in the line]
+<br>
+  <br>
+ <!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> --> 
+  <img src="https://user-images.githubusercontent.com/32223762/209338539-3a58ca8d-7203-4bcc-8b8a-dbd8b5ae6e3a.png" width="700" title="Postman">
+  [Initial page order by name asc, each line of the table leads to the Details page of the order that is in the line]
   <br>
   <br>
 <!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
-  <img src="https://user-images.githubusercontent.com/32223762/209229361-d2e3d66c-0141-4c5c-ba44-5c3bce83e6c4.png" width="700" title="Postman">
+  <img src="https://user-images.githubusercontent.com/32223762/209338194-3b11cc02-534a-4e2b-9975-62ab145e96ca.png" width="700" title="Postman">
  [Modal to create orders]
 <br>
   <br>
 <!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
-  <img src="https://user-images.githubusercontent.com/32223762/209229744-43f13e6f-61ef-4bfa-904b-b1b00775d81e.png" width="700" title="Postman">
+  <img src="https://user-images.githubusercontent.com/32223762/209338650-54bb17f5-72b6-4e67-b22e-0fc6ba8a956c.png" width="700" title="Postman">
 [Detail page of the selected order]
 
 <br>

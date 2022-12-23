@@ -13,14 +13,15 @@ This project was proposed by the refera group as a challenge. The goal of this c
   1. The first step is to clone the project somewhere on your machine: `git clone https://github.com/bielpatricio/refera_fullstack_challenge.git`;
   2. For the next step it is necessary to have docker running and preferably open;
   3. Now access the terminal inside the project folder;
-  4. Enter the server folder (`cd server`) and copy the .env.example file to a new file .env;
+  4. Enter the server folder (`cd refera_fullstack_challenge/server`), open the code (`code .`) and copy the .env.example file to a new file .env;
   6. Run the following command: `docker compose up --build && docker compose up` if you want run in docker;
-  7. Now that the backend is running, go back to the project's root folder (`cd ..`), go to the web folder (`cd web`);
+  7. Now that the backend is running, in a net terminal go to the project's initial folder, go to the web folder (`cd web`);
   8. Type the following command to install all dependencies: `npm install`;
   9. Now type the following command: `npm run dev`;
   
   Now front and back is running on your machine.
-  To access the application, just go to a browser and access the page: http://localhost:3000/
+  To access the application, just go to a browser and access the page: http://localhost:3000/<br>
+  If you check the database go to a one database management system and connect the database with the information of .env (user, password, database_name) 
 
 ## How the program work?
    - A main page was built that will list some orders. To optimize the loading time, a paging system was implemented in the API, so if the amount of data in the database is very big, it doesn't take to long to load the page, so the program will show every 10 orders. To access the other orders, you need to click on the lower right button and that way you will access the next 10 orders in the database, and to go back to the previous 10 orders just click on the lower left button that will appear on the screen. To order the results by each column it was necessary to change the backend too, because when you sort in the frontend we still don't have access to all data from the database, so when you click to order by column, the backend do this order to return to frontend the right data. So when you click in the column you order not just the 10 data that is showing on the front, but referring to the entire database.
@@ -192,7 +193,8 @@ This project was proposed by the refera group as a challenge. The goal of this c
   
   
 <!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
-  <img src="https://user-images.githubusercontent.com/32223762/209234668-293ac1d4-4c51-45e7-a37d-9cea46f986c4.png" width="700" title="Postman">
+![image](https://user-images.githubusercontent.com/32223762/209345271-ad53ca95-dc61-48dc-82bc-9c48270eb18f.png)
+
   
   
 <!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->

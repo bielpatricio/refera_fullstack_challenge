@@ -8,13 +8,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 
 export function Home() {
-  const {
-    previousPagination,
-    nextPagination,
-    changePageOfOrders,
-    orders,
-    total,
-  } = useOrderContext()
+  const { total } = useOrderContext()
   return (
     <HomeContainer>
       <Line>

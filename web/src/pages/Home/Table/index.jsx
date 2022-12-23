@@ -10,7 +10,7 @@ import {
   TableRow,
   TableSortLabel,
 } from '@mui/material'
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 
 export function TableComponent() {
   const {

@@ -21,8 +21,12 @@ export function OrdersProvider({ children }) {
   const [orderBy, setOrderBy] = useState('id')
   const navigate = useNavigate()
 
-  const [nextPagination, setNextPagination] = useState()
-  const [previousPagination, setPreviousPagination] = useState()
+  /// RESET TABLE
+  const resetTable = useCallback(() => {
+    setPage(1)
+    setOrder('asc')
+    setOrderBy('id')
+  }, [])
 
   /// GET ALL ORDERS IN THE PAGINATION 1 OF API
   const fetchOrder = useCallback(async () => {
@@ -34,8 +38,6 @@ export function OrdersProvider({ children }) {
           orderBy,
         },
       })
-      setNextPagination(response.data.next)
-      setPreviousPagination(response.data.previous)
       setOrders(response.data.results)
       setTotal(response.data?.count)
     } catch (error) {
@@ -50,17 +52,21 @@ export function OrdersProvider({ children }) {
   }, [])
 
   /// DELETE ORDER BY ID
-  const deleteOrder = useCallback(async (id) => {
-    try {
-      const response = await api.delete(`/orders/${id}`, {})
-      alert(response.data.message)
-      fetchOrder()
-      navigate('/')
-    } catch (e) {
-      console.error(e)
-      alert(`Delete order error: ${JSON.stringify(e.response.data)}`)
-    }
-  }, [])
+  const deleteOrder = useCallback(
+    async (id) => {
+      try {
+        const response = await api.delete(`/orders/${id}`, {})
+        alert(response.data.message)
+        fetchOrder()
+        resetTable()
+        navigate('/')
+      } catch (e) {
+        console.error(e)
+        alert(`Delete order error: ${JSON.stringify(e.response.data)}`)
+      }
+    },
+    [resetTable],
+  )
 
   /// CHANGE THE PAGINATION IN THE API AND CHANGE THE DATA OF ORDERS TO SHOW IN THE HOME
   const changePageOrders = useCallback(async (isNext) => {
@@ -69,6 +75,7 @@ export function OrdersProvider({ children }) {
     setPage((p) => (isNext ? p + 1 : p - 1))
   }, [])
 
+  /// CHANGE THE ORDER BY ONE COLUMN IN THE API AND CHANGE THE DATA OF ORDERS TO SHOW IN THE HOME
   const changeOrderBy = (orderBy) => {
     setOrderBy((currOrderBy) => {
       if (currOrderBy === orderBy) {
@@ -80,25 +87,9 @@ export function OrdersProvider({ children }) {
     })
   }
 
-  const changePageOfOrders = useCallback(async (url) => {
-    fetch(url)
-      .then((response) => {
-        response.json().then((data) => {
-          setNextPagination(data.next)
-          setPreviousPagination(data.previous)
-          setOrders(data.results)
-          setTotal(response.data.count)
-        })
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }, [])
-
   /// REDIRECT PAGE HOME TO PAGE DETAILS ORDER
   function goToPageOrderDetail(id) {
     const newUrl = `/${id}`
-    getOrderDetail(id)
     navigate(newUrl)
   }
 
@@ -123,34 +114,37 @@ export function OrdersProvider({ children }) {
   ///
 
   /// CREATE A NEW ORDER
-  const createOrder = useCallback(async (data) => {
-    const {
-      name,
-      description,
-      estateAgency,
-      company,
-      phone,
-      category,
-      deadline,
-    } = data
-    data.deadline = new Date(data.deadline).toISOString()
-    try {
-      const response = await api.post('/orders', {
+  const createOrder = useCallback(
+    async (data) => {
+      const {
         name,
         description,
         estateAgency,
         company,
         phone,
-        category_id: parseInt(category),
-        deadline: data.deadline,
-      })
-      alert(`Order was successfully created, status code: ${response.status}`)
-      fetchOrder()
-      navigate('/')
-    } catch (error) {
-      alert(`Order error: ${JSON.stringify(error.response.data)}`)
-    }
-  }, [])
+        category,
+        deadline,
+      } = data
+      data.deadline = new Date(data.deadline).toISOString()
+      try {
+        const response = await api.post('/orders', {
+          name,
+          description,
+          estateAgency,
+          company,
+          phone,
+          category_id: parseInt(category),
+          deadline: data.deadline,
+        })
+        alert(`Order was successfully created, status code: ${response.status}`)
+        resetTable()
+        navigate('/')
+      } catch (error) {
+        alert(`Order error: ${JSON.stringify(error.response.data)}`)
+      }
+    },
+    [resetTable],
+  )
 
   return (
     <OrdersContext.Provider
@@ -162,9 +156,6 @@ export function OrdersProvider({ children }) {
         getOrderDetail,
         goToPageOrderDetail,
         categories,
-        nextPagination,
-        previousPagination,
-        changePageOfOrders,
         total,
         deleteOrder,
         page,
@@ -172,6 +163,7 @@ export function OrdersProvider({ children }) {
         orderBy,
         changeOrderBy,
         changePageOrders,
+        resetTable,
       }}
     >
       {children}

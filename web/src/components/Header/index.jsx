@@ -1,11 +1,12 @@
+import { Link, useNavigate } from 'react-router-dom'
 import { HeaderContainer } from './styles'
 
 export function Header() {
   return (
     <HeaderContainer>
-      <a href="/" title="Home">
+      <Link to="/" title="Home">
         <img src="/src/assets/logo.png" alt="Logo" draggable={false} />
-      </a>
+      </Link>
 
       <h1>Refera</h1>
     </HeaderContainer>

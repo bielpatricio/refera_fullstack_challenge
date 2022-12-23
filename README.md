@@ -9,7 +9,7 @@ This project was proposed by the refera group as a challenge. The goal of this c
 - [go to WEB](#web)
 - [go to Contact](#contact)
 
-# How to run the program?
+## How to run the program?
   1. The first step is to clone the project somewhere on your machine: `git clone https://github.com/bielpatricio/refera_fullstack_challenge.git`;
   2. For the next step it is necessary to have docker running and preferably open;
   3. Now access the terminal inside the project folder;
@@ -22,11 +22,13 @@ This project was proposed by the refera group as a challenge. The goal of this c
   Now front and back is running on your machine.
   To access the application, just go to a browser and access the page: http://localhost:3000/<br>
   If you check the database go to a one database management system and connect the database with the information of .env (user, password, database_name) 
+  To run in a production environment it's just necessary the .env and use some docker technology to up the docker container to production.
 
 ## How the program work?
-   - A main page was built that will list some orders. To optimize the loading time, a paging system was implemented in the API, so if the amount of data in the database is very big, it doesn't take to long to load the page, so the program will show every 10 orders. To access the other orders, you need to click on the lower right button and that way you will access the next 10 orders in the database, and to go back to the previous 10 orders just click on the lower left button that will appear on the screen. To order the results by each column it was necessary to change the backend too, because when you sort in the frontend we still don't have access to all data from the database, so when you click to order by column, the backend do this order to return to frontend the right data. So when you click in the column you order not just the 10 data that is showing on the front, but referring to the entire database.
+   - A main page was built that will list some orders. To optimize the loading time, the paging system was implemented in the API, so if the amount of data in the database is very big, it doesn't take to long to load the page, so the program will show just 10 orders at a time. To access the other orders, you need to click on the lower right button and that way you will access the next 10 orders in the database, and to go back to the previous 10 orders just click on the orther right button. To order the results by each column it was necessary to change the backend too, because when you order in the frontend we still don't have access to all data from the database, so when you click to order by column, the backend do this order to return to frontend the right data. So when you click in the column you order not just the 10 data that is showing on the front, but referring to the entire database.
   -  Still on the initial screen we have some functionalities available, one of them is to click on the button `Open new order` that will open a modal to create a new order in the database, all fields are mandatory. In the `select categories` category options that exist in the database will appear, to create more options or delete some, just make an HTTP request referring to the category routes that are listed below, and you will have available to create your order with the new category.
   -  To show more knowledge of reactJS, a route system was created on the front-end, where when you click on one of the orders on the home page, you are redirected to a page where you will have detailed information about the selected order. In addition to the information, the page also has a button in the upper right corner (inside the field) that allows you to delete the order. To return to the initial page, one of the options is to click on the Refera icon in the upper left corner, it will always redirect to the application's initial page.
+   - To facilitate the testing of the application I created a script to populate the database when you run the code on your computer for the first time, it fills the database with some orders and some pre-set categories, if you want you can change the categories and orders of initialization, going inside the folder server/referaApi/seeds and changing the JSON, or just changing with the routes created (POST, DELETE, PATCH, GET) when the application is running.
   
 ## Server
   The back-end was created in django, a system used by the company Refera. The server runs on port 8000. The backend was created to support the challenge requirements:

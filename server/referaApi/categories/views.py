@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
 from rest_framework import status
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -11,7 +10,7 @@ from rest_framework.pagination import PageNumberPagination
 
 
 class RouteCategories(APIView):
-    def get(self, request: Request):
+    def get(self, _: Request):
         category = CategoryModel.objects.all()
         serializer = CategorySerializer(category, many=True)
         return Response(serializer.data, status.HTTP_200_OK)

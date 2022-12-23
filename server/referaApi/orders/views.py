@@ -20,14 +20,13 @@ class RoutePosts(APIView):
         order.is_valid(raise_exception=True)
 
         orderCreated = OrderModel.objects.create(**order.validated_data)
-
         order = OrderSerializer(orderCreated)
 
         return Response(order.data, status.HTTP_201_CREATED)
 
 
 class RoutePostsWithId(APIView):
-    def get(self, request: Request, id: int):
+    def get(self, _: Request, id: int):
         orderSelected = OrderModel.objects.prefetch_related(
             'category').filter(id=id).first()
 
@@ -38,16 +37,13 @@ class RoutePostsWithId(APIView):
 
         return Response(order.data, status.HTTP_200_OK)
 
-    def delete(self, request: Request, id: int):
+    def delete(self, _: Request, id: int):
         orderSelected = OrderModel.objects.filter(id=id)
         if not orderSelected:
             return Response({'message': 'Order not found'}, status.HTTP_404_NOT_FOUND)
 
         orderSelected.delete()
-        # orders = OrderModel.objects.all()
-        # paginator = PageNumberPagination()
-        # result_page = paginator.paginate_queryset(orders, request)
-        # orders = OrderSerializer(result_page, many=True)
+
         return Response({'message': 'Order deleted'}, status.HTTP_200_OK)
 
     def patch(self, request: Request, id: int):

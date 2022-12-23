@@ -3,20 +3,22 @@
 This project was proposed by the refera group as a challenge. The goal of this challenge is to create a web application to manage maintanence orders from Refera, following the Acceptance criteria. Application frontend needs to have a page to list all orders and the backend contains a simple REST API service and has a connection to a database.
 
 ## Contents
-- [go to How run the program?](#how-run-the-program)
+- [go to How to run the program?](#how-to-run-the-program)
 - [go to How the program work?](#how-the-program-work)
 - [go to Server](#server)
 - [go to WEB](#web)
 - [go to Contact](#contact)
 
-# How run the program?
+# How to run the program?
   1. The first step is to clone the project somewhere on your machine: `git clone https://github.com/bielpatricio/refera_fullstack_challenge.git`;
   2. For the next step it is necessary to have docker running and preferably open;
   3. Now access the terminal inside the project folder;
-  4. Enter the server folder (`cd server`) and type the following command: `docker compose up --build`;
-  5. Now that the backend is running, go back to the project's root folder (`cd ..`), go to the web folder (`cd web`);
-  6. Type the following command to install all dependencies: `npm install`;
-  7. Now type the following command: `npm run dev`;
+  4. Enter the server folder (`cd server`) and copy the .env.example file to a new file .env;    
+   - ( If you will not run in docker, make the changes suggested inside the file .env.example )
+  5. Run the following command: `docker compose up --build`;
+  6. Now that the backend is running, go back to the project's root folder (`cd ..`), go to the web folder (`cd web`);
+  7. Type the following command to install all dependencies: `npm install`;
+  8. Now type the following command: `npm run dev`;
   
   Now front and back is running on your machine.
   To access the application, just go to a browser and access the page: http://localhost:3000/
@@ -126,6 +128,28 @@ This project was proposed by the refera group as a challenge. The goal of this c
 ## WEB
   The front-end stop was made in reactJS and styled-components, as mentioned before there are two routes to '/' to the home page where the orders are listed and the create order is done, and the route '/:orderId', where orderId represents the Id of the selected order, this page will show the details of the order. The layout was created based on the challenge specification diagram. The material-ui library was used for the icons. All requests are made in the OrdersContext file, in this context the request information is saved and made available to all other files and pages. The web page run on port 3000.
   
+ ## Improvements
+ 
+ ### Authentication
+  Could use the Django administration to controler the access and permissions od the users. So, when access the application, you need log in to see how access you have inside the app. 
+ ### Structure the in database account for Real estate agency, Company and Contact registration data
+
+  #### Entity Relationship diagram
+
+<img src="https://user-images.githubusercontent.com/32223762/209262057-0511e31e-44d1-45f6-a7a5-42464dabeeda.png" width="600" title="Dbeaver">
+
+  Database Changes:
+  - New Tables: EstateAgency, Company and Contact
+  - Removing the columns "estateAgency", "name", "phone" and "company" in Orders table.
+  - Creating new columns "category_id", "company_id", "estate_agency_id" and "contact_id" in Orders table as foreign keys.
+ 
+
+#### For each new etity
+  - Create a new app folder where we have our models, views, serializers, of the company (This need be done for Real estate agency, Company and Contact registration data).
+  - Run `$ python manage.py makemigration` to create the migrations, and `$  python manage.py migrate` to execute in the current database.
+ **PS:** Before execute the changes create a SQL script to convert the previous Orders columns, to the new entities without losing any previous information.  
+
+ 
 ### Below are some screenshots of the running application.
   
  <!-- <p align="center" style="display: flex; align-items: center; justify-content: center;"> -->
@@ -185,6 +209,7 @@ https://www.django-rest-framework.org/tutorial/quickstart/#urls
 https://medium.com/djangotube/django-sqlite-to-postgresql-database-migration-e3c1f76711e1
 https://www.cloudbees.com/blog/using-docker-compose-for-python-development
 https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-20-04
+https://docs.djangoproject.com/en/4.1/topics/auth/
 
 # Contact
 
